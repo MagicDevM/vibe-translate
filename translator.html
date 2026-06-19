@@ -199,7 +199,7 @@ pre { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; backgroun
             </tr>
           </thead>
           <tbody id="tableBody">
-            <tr class="empty-state"><td colspan="5"><p>No strings loaded</p><p>Go to the Input tab and select a locale to import</p></td></tr>
+            <tr class="empty-state"><td colspan="4"><p>No strings loaded</p><p>Go to the Input tab and select a locale to import</p></td></tr>
           </tbody>
         </table>
       </div>
@@ -256,7 +256,6 @@ pre { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; backgroun
 
   const tableBody = document.getElementById('tableBody');
   const searchInput = document.getElementById('searchInput');
-  const headerCheckbox = document.getElementById('headerCheckbox');
   const stats = document.getElementById('stats');
   const tabCount = document.getElementById('tabCount');
   const exportOutput = document.getElementById('exportOutput');
@@ -710,7 +709,7 @@ pre { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; backgroun
     app.strings.forEach(s => recomputeFormatErrors(s));
     const list = sortStrings(getFiltered());
     if (!list.length) {
-      tableBody.innerHTML = '<tr class="empty-state"><td colspan="5"><p>No strings match your filter</p></td></tr>';
+      tableBody.innerHTML = '<tr class="empty-state"><td colspan="4"><p>No strings match your filter</p></td></tr>';
       return;
     }
     let html = '';
