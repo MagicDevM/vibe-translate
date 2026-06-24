@@ -764,15 +764,20 @@ pre { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; backgroun
     });
     tableBody.innerHTML = html;
 
-    // Bind input events and auto-size
+    // Bind input events
     tableBody.querySelectorAll('.trans-input').forEach(inp => {
       inp.addEventListener('input', onTranslateInput);
-      autoResize(inp);
     });
     tableBody.querySelectorAll('.item-input').forEach(inp => {
       inp.addEventListener('input', onItemInput);
-      autoResize(inp);
     });
+
+    // Batch auto-resize to minimize forced reflows:
+    // 1) Set all heights to auto (writes), 2) read all scrollHeights (one reflow), 3) set final heights (writes)
+    const allInputs = [...tableBody.querySelectorAll('.trans-input, .item-input')];
+    allInputs.forEach(inp => inp.style.height = 'auto');
+    const heights = allInputs.map(inp => inp.scrollHeight);
+    allInputs.forEach((inp, i) => inp.style.height = heights[i] + 'px');
 
     updateStats();
   }
