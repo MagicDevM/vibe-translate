@@ -186,16 +186,16 @@ pre { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; backgroun
         <button class="filter-btn" data-filter="errors">Format Errors</button>
       </div>
       <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search keys or values\u2026">
+        <input type="text" id="searchInput" placeholder="Search keys or values&#x2026;">
       </div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th class="sortable" data-col="key">Key <span class="sort" id="sort-key">\u25b4</span></th>
-              <th class="sortable" data-col="original">Original <span class="sort" id="sort-original">\u25b4</span></th>
+              <th class="sortable" data-col="key">Key <span class="sort" id="sort-key">&#9652;</span></th>
+              <th class="sortable" data-col="original">Original <span class="sort" id="sort-original">&#9662;</span></th>
               <th>Translation</th>
-              <th class="sortable" data-col="status">Status <span class="sort" id="sort-status">\u25b4</span></th>
+              <th class="sortable" data-col="status">Status <span class="sort" id="sort-status">&#9662;</span></th>
             </tr>
           </thead>
           <tbody id="tableBody">
@@ -716,9 +716,17 @@ pre { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; backgroun
   function updateSort(col) {
     if (app.sortCol === col) app.sortAsc = !app.sortAsc;
     else { app.sortCol = col; app.sortAsc = true; }
-    document.querySelectorAll('.sort').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.sort').forEach(s => {
+      s.classList.remove('active');
+      s.textContent = '\u25be';
+    });
+
     const el = document.getElementById('sort-' + col);
-    if (el) { el.classList.add('active'); el.textContent = app.sortAsc ? '\u25b4' : '\u25be'; }
+
+    if (el) {
+      el.classList.add('active');
+      el.textContent = app.sortAsc ? '\u25b4' : '\u25be';
+    }
     renderTable();
   }
 
