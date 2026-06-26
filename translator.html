@@ -739,9 +739,14 @@ pre { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; backgroun
     renderTable();
   }));
 
+  let searchInputTimeout = null;
   searchInput.addEventListener('input', () => {
-    app.search = searchInput.value;
-    renderTable();
+    clearTimeout(searchInputTimeout);
+
+    searchInputTimeout = setTimeout(() => {
+      app.search = searchInput.value;
+      renderTable();
+    }, 150);
   });
 
   // --- Render Table ---
