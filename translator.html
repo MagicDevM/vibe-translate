@@ -848,9 +848,9 @@ pre { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; backgroun
     e.target.style.background = hasErr ? '#fff3e0' : translated ? '#f1f8e9' : '';
     const statusTd = e.target.closest('tr').querySelector('.status');
     if (statusTd) {
-      if (hasErr) { statusTd.textContent = '\u26a0\ufe0f'; statusTd.title = 'Format specifier mismatch'; }
-      else if (translated) { statusTd.textContent = '\u2705'; statusTd.title = ''; }
-      else { statusTd.textContent = '\u274c'; statusTd.title = ''; }
+      if (hasErr) { statusTd.innerHTML = '<i class="bx bx-alert-triangle"></i>'; statusTd.title = 'Format specifier mismatch'; }
+      else if (translated) { statusTd.innerHTML = '<i class="bx bx-check-circle"></i>'; statusTd.title = ''; }
+      else { statusTd.innerHTML = '<i class="bx bx-x"></i>'; statusTd.title = ''; }
     }
     const tr = e.target.closest('tr');
     tr.classList.toggle('has-format-errors', hasErr);
@@ -901,9 +901,9 @@ pre { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; backgroun
     const statusTd = tr.querySelector('.status');
     const translated = s.itemTranslations.some(t => t.trim());
     if (statusTd) {
-      if (anyErr) { statusTd.textContent = '\u26a0\ufe0f'; statusTd.title = 'Format specifier mismatch'; }
-      else if (translated) { statusTd.textContent = '\u2705'; statusTd.title = ''; }
-      else { statusTd.textContent = '\u274c'; statusTd.title = ''; }
+      if (anyErr) { statusTd.innerHTML = '<i class="bx bx-alert-triangle"></i>'; statusTd.title = 'Format specifier mismatch'; }
+      else if (translated) { statusTd.innerHTML = '<i class="bx bx-check-circle"></i>'; statusTd.title = ''; }
+      else { statusTd.innerHTML = '<i class="bx bx-x"></i>'; statusTd.title = ''; }
     }
     scheduleSave();
     updateStats();
